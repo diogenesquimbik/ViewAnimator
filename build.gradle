@@ -8,7 +8,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
+        classpath 'com.android.tools.build:gradle:2.3.3'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.4.1'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
         // NOTE: Do not place your application dependencies here; they belong
@@ -17,9 +17,9 @@ buildscript {
 }
 
 ext{
-    COMPILE_SDK=24
-    TARGET_SDK=24
-    BUILD_TOOL="24.0.2"
+    COMPILE_SDK=25
+    TARGET_SDK=25
+    BUILD_TOOL="25.0.3"
     minSdkVersion = 11
     sourceCompatibilityVersion = JavaVersion.VERSION_1_7
     targetCompatibilityVersion = JavaVersion.VERSION_1_7
@@ -31,9 +31,10 @@ allprojects {
     repositories {
         jcenter()
         maven {
-            url  "http://dl.bintray.com/florent37/maven"
+            url  "http://dl.bintray.com/fssilva/maven"
         }
     }
+    tasks.withType(Javadoc).all { enabled = false }
 }
 
 task clean(type: Delete) {

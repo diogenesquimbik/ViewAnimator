@@ -12,34 +12,36 @@ android {
         versionCode 1
         versionName PROJ_VERSION
     }
+
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:support-v4:23.3.0'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:support-annotations:23.3.0'
+    compile 'com.android.support:support-v4:25.3.1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:support-annotations:25.3.1'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 }
 
 ext {
     bintrayRepo = 'maven'
     bintrayName = 'ViewAnimator'
-    orgName = 'florent37'
+    orgName = 'fssilva'
 
-    publishedGroupId = 'com.github.florent37'
+    publishedGroupId = 'com.github.fssilva'
     libraryName = 'ViewAnimator'
     artifact = 'viewanimator'
 
     libraryDescription = ''
 
-    siteUrl = 'https://github.com/florent37/ViewAnimator'
-    gitUrl = 'https://github.com/florent37/ViewAnimator.git'
+    siteUrl = 'https://github.com/fssilva/ViewAnimator'
+    gitUrl = 'https://github.com/fssilva/ViewAnimator.git'
 
     libraryVersion = rootProject.ext.libraryVersion
 
-    developerId = 'florent37'
-    developerName = 'florent37'
-    developerEmail = 'champigny.florent@gmail.com'
+    developerId = 'fssilva'
+    developerName = 'fssilva'
+    developerEmail = 'me@fsousasilva.com'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
