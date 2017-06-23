@@ -713,7 +713,6 @@ public class AnimationBuilder {
                 final float y = currentPosition[1];
                 ViewCompat.setX(view, x);
                 ViewCompat.setY(view, y);
-                Log.d(null, "path: value=" + value + ", x=" + x + ", y=" + y);
             }
         }, 0, pathMeasure.getLength());
     }
