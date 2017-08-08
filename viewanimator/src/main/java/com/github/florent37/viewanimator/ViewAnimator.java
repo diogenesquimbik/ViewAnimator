@@ -2,6 +2,7 @@ package com.github.florent37.viewanimator;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.support.annotation.IntDef;
 import android.support.annotation.IntRange;
@@ -28,6 +29,7 @@ public class ViewAnimator {
 
     private int repeatCount = 0;
     private int repeatMode = ValueAnimator.RESTART;
+    private boolean useLayer = false;
 
     private AnimatorSet animatorSet;
     private View waitForThisViewHeight = null;
@@ -103,11 +105,27 @@ public class ViewAnimator {
         animatorSet.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
+
+                if (useLayer) {
+                    View view = getView(animation);
+                    if (view != null) {
+                        view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+                    }
+                }
+
                 if (startListener != null) startListener.onStart();
             }
 
             @Override
             public void onAnimationEnd(Animator animation) {
+
+                if(useLayer) {
+                    View view = getView(animation);
+                    if (view != null) {
+                        view.setLayerType(View.LAYER_TYPE_NONE, null);
+                    }
+                }
+
                 if (stopListener != null) stopListener.onStop();
                 if (next != null) {
                     next.prev = null;
@@ -128,6 +146,16 @@ public class ViewAnimator {
 
         return animatorSet;
     }
+
+    private View getView(Animator animation) {
+        AnimatorSet set = (AnimatorSet)animation;
+        try {
+            return (View) ((ObjectAnimator) set.getChildAnimations().get(0)).getTarget();
+        }catch (Exception ex) {
+            return null;
+        }
+    }
+
 
     public ViewAnimator start() {
         if (prev != null) {
@@ -168,6 +196,17 @@ public class ViewAnimator {
 
     public ViewAnimator startDelay(long startDelay) {
         this.startDelay = startDelay;
+        return this;
+    }
+
+    /**
+     * Enables hardware acceleration for the animation.
+     *
+     * @return the view animation
+     * @link https://developer.android.com/reference/android/view/ViewPropertyAnimator.html#withLayer()
+     */
+    public ViewAnimator withLayer() {
+        this.useLayer = true;
         return this;
     }
 
