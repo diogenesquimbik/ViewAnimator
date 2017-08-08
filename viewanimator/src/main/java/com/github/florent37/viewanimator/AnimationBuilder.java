@@ -43,6 +43,17 @@ public class AnimationBuilder {
     }
 
     /**
+     * Enables hardware acceleration for the animation.
+     *
+     * @return the view animation
+     * @link https://developer.android.com/reference/android/view/ViewPropertyAnimator.html#withLayer()
+     */
+    public AnimationBuilder withLayer() {
+        this.viewAnimator.withLayer();
+        return this;
+    }
+
+    /**
      * Dp animation builder.
      *
      * @return the animation builder
